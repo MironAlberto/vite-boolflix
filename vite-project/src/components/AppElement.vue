@@ -58,30 +58,69 @@ export default {
                 <img v-else :src="`https://image.tmdb.org/t/p/original/${image}`" alt="cover">
             </div>
             <div class="info-card">
-                <div class="p-4 ">
-                    <p class="fs-6 pb-0 text-danger fw-bold">TITLE</p> {{ title }}
-                </div>
                 <div class="p-4">
-                    <p class="fs-6 pb-0 text-danger fw-bold">ORIGINAL TITLE</p> {{ originalTitle }}
+                    <p class="d-flex flex-column">
+                        <span class="fs-6 text-danger fw-bold">
+                            TITLE
+                        </span>
+                        <span>
+                            {{ title }}
+                        </span>
+                    </p> 
+                    <p class="d-flex flex-column">
+                        <span class="fs-6 text-danger fw-bold">
+                            ORIGINAL TITLE
+                        </span>
+                        <span>
+                            {{ originalTitle }}
+                        </span>
+                    </p> 
+                    <p class="d-flex flex-column">
+                        <span class="fs-6 text-danger fw-bold">
+                            ORIGINAL LANGUAGE
+                        </span>
+                        <span>
+                            <img :src="nationalFlags()" :alt="originalLanguage">
+                        </span>
+                    </p> 
+                    <p class="d-flex flex-column">
+                        <span class="fs-6 text-danger fw-bold">
+                            RATING
+                        </span>
+                        <span>
+                            <i v-for="(star) in voteAverage" :key="star" class="fa-solid fa-star"></i>
+                            <i v-for="(star) in (5 - voteAverage)" :key="star" class="fa-regular fa-star"></i>
+                        </span>
+                    </p> 
+                    
                 </div>
-                <div class="p-4">
-                    <p class="fs-6 pb-0 text-danger fw-bold">ORIGINAL LANGUAGE</p> <img :src="nationalFlags()" :alt="originalLanguage">
-                </div>
-                <div class="p-4">
-                    <p class="fs-6 pb-0 text-danger fw-bold">RATING</p>
-                    <i v-for="(star) in voteAverage" :key="star" class="fa-solid fa-star"></i>
-                    <i v-for="(star) in (5 - voteAverage)" :key="star" class="fa-regular fa-star"></i>
-                </div>
-                <!-- <div class="pe-2 ps-2">
-                    <p class="fs-6 pb-0 text-danger fw-bold">PLOT</p>
-                    {{ overview }}
-                </div> -->
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    More Details
+                </button>
             </div>
         </div>
     </div>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">{{ title }}</h5>
+        <button type="button" class="btn-close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <p>{{ overview }}</p>
+            <div class="img-box">
+                <img class="loading-image" v-if="image == null" src="../../public/img/netflix.jpg" alt="loading_image">
+                <img v-else :src="`https://image.tmdb.org/t/p/original/${image}`" alt="cover">
+            </div>
+        </div>
+    </div>  
 </template>
 
 <style lang="scss" scoped>
+.offcanvas{
+    background-color: black;
+    color: white;
+}
+
 img{
     width: 30px;
 }

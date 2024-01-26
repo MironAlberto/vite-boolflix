@@ -2,11 +2,13 @@
 export default {
     data() {
         return {
-
+            mute: true,
         };
     },
     methods: {
-
+        toggleMute(){
+            this.mute = !this.mute
+        },
     }
 }
 </script>
@@ -14,7 +16,7 @@ export default {
 <template>
     <div class="jumbotron">
         <div class="video">
-            <video autoplay plays-inline muted loop width="100%">
+            <video :muted="mute" autoplay  plays-inline loop width="100%">
                 <source src="../../public/img/avengers-video.mp4" type="video/mp4">
             </video>
         </div>
@@ -36,8 +38,13 @@ export default {
                     </span>
                 </button>
             </div>
-
         </div>
+
+        <button @click="toggleMute()" class="btn icon">
+            <span class="audio">
+                <i class="fa-solid fa-headphones fa-xl"></i>
+            </span>
+        </button>
     </div>
 
     
@@ -48,13 +55,28 @@ export default {
 .jumbotron{
     position: relative;
     width: 100%;
-    height: 85vh;
+    height: 850px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: -webkit-linear-gradient(180deg, #2e2e2e,#000000,#000000);
-    background: linear-gradient(180deg, #2e2e2e,#000000,#000000);  */
-    background-color: black;                                          
+    background-color: black;                                   
+}
+
+button{
+    border-radius: 50%;
+    padding: 10px;
+    background-color: rgba($color: white, $alpha: 0.1);
+}
+
+button:hover{
+    border: 1px solid white;
+    background-color: rgba($color: white, $alpha: 0.1);
+}
+
+.icon{
+    position: absolute;
+    top: 350px;
+    right: 60px;
 }
 
 .video{
@@ -87,5 +109,9 @@ export default {
         button:hover{
             border: 1.5px solid white;
         }
+    }
+    .audio{
+        color: white;
+        font-size: 20px;
     }
 </style>

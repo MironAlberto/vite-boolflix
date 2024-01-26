@@ -100,6 +100,7 @@ header{
     .header-left, .header-right{
         display: flex;
         align-items: center;
+        padding-top: 15px;
     }
 
     ul{
@@ -119,6 +120,9 @@ header{
 
     .active{
         color: white;
+        border-bottom: 4px solid #D91921;
+        padding-bottom: 22px;
+                    
     }
 
     .icons{
@@ -127,26 +131,25 @@ header{
     }
 
     .icons:hover{
-        color: orange;
+        color: #D91921;
     }
 
     .profile{
-        max-width: 40px;
-        height: 40px;
+        max-width: 36px;
+        height: 36px;
         margin: 0 20px;
         cursor: pointer;
 
         img{
             width: 100%;
             height: 100%;
-            border-radius: 10%;
             object-fit: cover;
         }
     }
 
     .profile:hover{
-        max-width: 41px;
-        height: 41px;
+        max-width: 38px;
+        height: 38px;
     }
 
 }
